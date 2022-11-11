@@ -1,4 +1,4 @@
-# How-to-plot-date-time-values-in-vertical-axes-in-.NET-MAUI-Chart-SfCartesianChart-
+# How to plot date-time values in vertical axes in .NET MAUI Chart (SfCartesianChart)
 
 [.Net MAUI Chart](https://www.syncfusion.com/maui-controls/maui-charts) supports plotting date-time values in the y-axis, convert the date-time values to double while populating the items source for MAUI chart, and reverse the conversion (double to date-time) in the [LabelCreated](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_LabelCreated) event of [ChartAxis](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html). By using the [NumericalAxis](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.NumericalAxis.html) with above conversions, you can display the date-time values in y-axis.
 
