@@ -18,11 +18,11 @@ namespace DateTimeVerticalAxesDemo
 			// Converting date time value to its respective double value.
 			Data = new ObservableCollection<Model>()
 			{
-				new Model(){ Name = "Jack", CheckInTime = new DateTime(2022, 11, 8, 14, 30, 0).ToOADate()},
-				new Model(){ Name = "Drake", CheckInTime = new DateTime(2022, 11, 8, 10, 0, 0).ToOADate()},
-				new Model(){ Name = "Aron", CheckInTime = new DateTime(2022, 11, 8, 15, 45, 0).ToOADate()},
-				new Model(){ Name = "John", CheckInTime = new DateTime(2022, 11, 8, 11, 25, 0).ToOADate()},
-				new Model(){ Name = "Shawn", CheckInTime = new DateTime(2022, 11, 8, 13, 10, 0).ToOADate()}
+				new Model(){Name = "Jack", CheckInTime = new DateTime(2022, 11, 8, 14, 30, 0)},
+				new Model(){Name = "Drake", CheckInTime = new DateTime(2022, 11, 8, 10, 0, 0)},
+				new Model(){Name = "Aron", CheckInTime = new DateTime(2022, 11, 8, 15, 45, 0)},
+				new Model(){Name = "John", CheckInTime = new DateTime(2022, 11, 8, 11, 25, 0)},
+				new Model(){Name = "Shawn", CheckInTime = new DateTime(2022, 11, 8, 13, 10, 0)},
 			};
 
 			Minimum = new DateTime(2022, 11, 8).ToOADate();
@@ -31,7 +31,17 @@ namespace DateTimeVerticalAxesDemo
 
 	public class Model
 	{
+		private DateTime checkInTime;
 		public string Name { get; set; }
-		public double CheckInTime { get; set; }
+		public double CheckIn { get; set; }
+		 public DateTime CheckInTime
+		{
+			get { return checkInTime; }
+			set
+			{
+				checkInTime = value;
+				CheckIn = value.ToOADate();
+			}
+		}
 	}
 }

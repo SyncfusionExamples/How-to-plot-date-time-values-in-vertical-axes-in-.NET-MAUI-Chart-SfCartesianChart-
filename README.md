@@ -12,8 +12,18 @@ This article explains how to plot date-time values in the y-axis to the .Net MAU
 ```
 public class Model
 {
+	private DateTime checkInTime;
 	public string Name { get; set; }
-	public double CheckInTime { get; set; }
+	public double CheckIn { get; set; }
+	public DateTime CheckInTime
+	{
+		get { return checkInTime; }
+		set
+		{
+			checkInTime = value;
+			CheckIn = value.ToOADate();
+		}
+	}
 }
 ```
 ### Initialize view model
@@ -33,11 +43,11 @@ public class ViewModel
 		// Converting date time value to its respective double value.
 		Data = new ObservableCollection<Model>()
 		{
-			new Model(){ Name = "Jack", CheckInTime = new DateTime(2022, 11, 8, 14, 30, 0).ToOADate()},
-			new Model(){ Name = "Drake", CheckInTime = new DateTime(2022, 11, 8, 10, 0, 0).ToOADate()},
-			new Model(){ Name = "Aron", CheckInTime = new DateTime(2022, 11, 8, 15, 45, 0).ToOADate()},
-			new Model(){ Name = "John", CheckInTime = new DateTime(2022, 11, 8, 11, 25, 0).ToOADate()},
-			new Model(){ Name = "Shawn", CheckInTime = new DateTime(2022, 11, 8, 13, 10, 0).ToOADate()}
+			new Model(){Name = "Jack", CheckInTime = new DateTime(2022, 11, 8, 14, 30, 0)},
+			new Model(){Name = "Drake", CheckInTime = new DateTime(2022, 11, 8, 10, 0, 0)},
+			new Model(){Name = "Aron", CheckInTime = new DateTime(2022, 11, 8, 15, 45, 0)},
+			new Model(){Name="John", CheckInTime = new DateTime(2022, 11, 8, 11, 25, 0)},
+			new Model(){Name = "Shawn", CheckInTime = new DateTime(2022, 11, 8, 13, 10, 0)},
 		};
 
 		Minimum = new DateTime(2022, 11, 8).ToOADate();
@@ -66,16 +76,16 @@ To display the date-time values in the y-axis, add [NumericalAxis](https://help.
 
     <chart:SfCartesianChart.YAxes>
         <chart:NumericalAxis LabelCreated="OnNumericalAxisLabelCreated"
-                                               Minimum="{Binding Minimum}">
+                             Minimum="{Binding Minimum}">
             <chart:NumericalAxis.Title>
-                <chart:ChartAxisTitle Text="Check-in (hh mm ss)"/>
+                <chart:ChartAxisTitle Text="Check-in time (hh mm)"/>
             </chart:NumericalAxis.Title>
         </chart:NumericalAxis>
    </chart:SfCartesianChart.YAxes>
 
     <chart:ColumnSeries ItemsSource="{Binding Data}"
-                                          XBindingPath="Name"
-                                          YBindingPath="CheckInTime"/>
+                        XBindingPath="Name"
+                        YBindingPath="CheckIn"/>
 </chart:SfCartesianChart>
 ```
 
@@ -85,11 +95,14 @@ To display the date-time values in the y-axis, add [NumericalAxis](https://help.
 private void OnNumericalAxisLabelCreated(object sender, ChartAxisLabelEventArgs e)
 {
 	double value = Convert.ToDouble(e.Label);
+	// Converting double value to its respective date time value.
 	var date = DateTime.FromOADate(value);
+
+	// formatting date time string to display on the y-axis
 	e.Label = String.Format("{0:hh:mm tt }", date);
+
 }
 ```
 
-![Date time in vertical axis](https://user-images.githubusercontent.com/61832185/201097922-c942a7e5-487d-474c-a1db-7ec44dd1fef0.png)
+![Date time in vertical axis](https://user-images.githubusercontent.com/61832185/201354745-f849df7c-0f6e-4caa-977a-37dc8b274629.png)
 
-[KB document]()
