@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Syncfusion.Maui.Core" Version="*" />
 	  <PackageReference Include="Syncfusion.Maui.Charts" Version="*" />
 	</ItemGroup>
 
