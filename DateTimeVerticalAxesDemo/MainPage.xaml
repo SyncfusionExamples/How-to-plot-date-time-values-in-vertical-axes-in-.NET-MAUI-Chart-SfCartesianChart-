@@ -21,7 +21,7 @@
 
             <chart:SfCartesianChart.YAxes>
                 <chart:NumericalAxis LabelCreated="OnNumericalAxisLabelCreated"
-                                     Minimum="{Binding Minimum}">
+                                 Minimum="{Binding Minimum}">
                     <chart:NumericalAxis.Title>
                         <chart:ChartAxisTitle Text="Check-in time (hh mm)"/>
                     </chart:NumericalAxis.Title>
@@ -29,8 +29,8 @@
             </chart:SfCartesianChart.YAxes>
 
             <chart:ColumnSeries ItemsSource="{Binding Data}"
-                                XBindingPath="Name"
-                                YBindingPath="CheckIn"/>
+                            XBindingPath="Name"
+                            YBindingPath="CheckIn"/>
         </chart:SfCartesianChart>
     </Grid>
 
